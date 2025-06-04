@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.sangseng"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 
 java {
     toolchain {
@@ -18,12 +18,10 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "2025.0.0"
-
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
-    implementation("org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc")
+    implementation("org.springframework.cloud:spring-cloud-starter-gateway-server-webflux")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -32,7 +30,7 @@ dependencies {
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2025.0.0")
     }
 }
 
