@@ -20,19 +20,19 @@ class GatewayConfiguration {
     @Bean
     fun routeLocator(builder: RouteLocatorBuilder): RouteLocator {
         return builder.routes()
-                      .route("user-service") { route ->
+                      .route("user-service") { route ->  // http://localhost:13434/gateway/user/<segment> -> http://localhost:13435/user/<segment>
                           route.path("/${gatewayContextPath}/${userContextPath}/**")
                                .filters() { filter ->
                                    filter.rewritePath("/${gatewayContextPath}/${userContextPath}/(?<segment>.*)", "/${userContextPath}/\${segment}")
                                }.uri("http://localhost:13435")
                       }
-                      .route("product-service") { route ->
+                      .route("product-service") { route ->  // http://localhost:13434/gateway/product/<segment> -> http://localhost:13436/product/<segment>
                           route.path("/${gatewayContextPath}/${productContextPath}/**")
                                .filters() { filter ->
                                    filter.rewritePath("/${gatewayContextPath}/${productContextPath}/(?<segment>.*)", "/${productContextPath}/\${segment}")
                                }.uri("http://localhost:13436")
                       }
-                      .route("order-service") { route ->
+                      .route("order-service") { route ->  // http://localhost:13434/gateway/order/<segment> -> http://localhost:13437/order/<segment>
                           route.path("/${gatewayContextPath}/${orderContextPath}/**")
                                .filters() { filter ->
                                    filter.rewritePath("/${gatewayContextPath}/${orderContextPath}/(?<segment>.*)", "/${orderContextPath}/\${segment}")
